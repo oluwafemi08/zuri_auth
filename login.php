@@ -1,29 +1,56 @@
-<?php
-if (isset($_POST['login'])) {
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-    session_start();
-    $url = 'userdata.json'; // path to JSON file
-    $data = file_get_contents($url); // put the contents of the file into a variable
-    $details = json_decode($data, true); // decode the JSON feed
-    $user_found = FALSE;
-    foreach ($details as $detail) {
-        /* Check Username and Password existence in defined array */
-        if ($detail["username"] == $email && $detail["password"] == $password) {
-            $user_found = TRUE;
-            break;
+<?php include_once('lib/header.php');
+if (isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])) {
+    // redirect to dashboard if user is already loggedin
+    header('Location: dashboard.php');
+};
+
+
+
+?>
+<!-- <h2>Login</h2> -->
+
+<p>
+    <?php
+    if (isset($_SESSION['message']) && !empty($_SESSION['message'])) {
+        echo "<span style='color:green'>" . $_SESSION['message'] . "</span>";
+        session_destroy();
+    }
+    ?>
+</p>
+<form action="loginProcess.php" method="POST">
+
+
+
+    <p>
+        <?php
+        if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+            echo "<span style='color:green'>" . $_SESSION['error'] . "</span>";
+            session_destroy();
         }
-    }
-    if ($user_found === FALSE) {
-        /*Unsuccessful attempt: Set error message */
-        $_SESSION['msg'] = "<script type='text/javascript'>toastr.error('Wrong Login Details')</script>";
-        echo $msg;
-    } else {
-        $_SESSION['msg']  = "<script type='text/javascript'>toastr.success('Welcome $email')</script>";
-    }
-    session_start();
-    $_SESSION['name'] = $email;
-    //redirect to the dashboard page using php built-in header method
-    header("Location: index.php");
-    //replace the index.html with the dashboard URL
-}
+        ?>
+
+    </p>
+
+    <h2>Login</h2>
+    <p>
+        <label>Email</label><br />
+        <input <?php
+                if (isset($_SESSION['email'])) {
+                    echo "value=" . $_SESSION['email'];
+                }
+                ?> type="text" name="email" id="" placeholder="email@domain.com">
+    </p>
+
+    <p>
+        <label>Password</label><br />
+        <input type="password" name="password" id="" placeholder="password">
+    </p>
+
+
+
+    <p>
+        <button type="submit">Login</button>
+    </p>
+</form>
+
+<?php include_once('lib/footer.php'); ?>

@@ -1,3 +1,5 @@
+<?php include_once('lib/header.php'); ?>
+
 <div class="container-fluid main-content">
     <div class="row">
         <!-- <div class="col-lg-12"> -->
@@ -6,7 +8,7 @@
                 <h1>Welcome To ZuriApp</h1>
                 <p>Enter your details </p>
                 <p>and start your journey with us </p>
-                <a href="signup.php" class="btn signUp__button">Sign Up</a>
+                <a href="register.php" class="btn register__button">Sign Up</a>
             </div>
         </div>
 
@@ -15,7 +17,7 @@
                 <h2>Sign in to ZuriApp</h2>
                 <form method="POST" action="login.php">
                     <div class='form-group'>
-                        <input type="text" name="email" class="form-control username_box" placeholder="Username" required minlength="3">
+                        <input type="text" name="email" class="form-control username_box" placeholder="email@domain.com" required minlength="3">
                     </div>
                     <div class="form-group">
                         <input type="password" id="password" name="password" class="form-control password_box" placeholder="Password" pattern='[a-zA-Z]{3,15}' title="Must contain at least one uppercase and  lowercase letter, and at least 3 or more characters" required>
@@ -59,7 +61,7 @@
         <h1>Welcome To ZuriApp</h1>
         <p>Enter your details </p>
         <p>and start your journey with us </p>
-        <a href="signup.php" class="btn signUp__button">Sign Up</a>
+        <a href="register.php" class="btn register__button">Sign Up</a>
 
         </section>
 
@@ -86,3 +88,5 @@
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
+
+        <?php include_once('lib/footer.php'); ?>

@@ -21,20 +21,20 @@
         <div class="sidebar_register">
             <h1>Welcome to zuriApp</h1>
             <h5>Have an account?</h5>
-            <a href="index.php" class="btn signUp__button sign-up-register">Sign In</a>
+            <a href="index.php" class="btn register__button sign-up-register">Sign In</a>
 
         </div>
 
-        <div class="signUp_form_container">
+        <div class="register_form_container">
             <h2>Create Account</h2>
             <form method="POST" action="register.php">
-                <input type="text" name="email" class="username_box signup-Input" placeholder="Username" required minlength="3">
-                <input type="password" id="password" name="password" class="password_box signup-Input" placeholder="Password" pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}' title="Must contain at least one uppercase and  lowercase letter, and at least 5 or more characters" required>
+                <input type="text" name="email" class="username_box register-Input" placeholder="Username" required minlength="3">
+                <input type="password" id="password" name="password" class="password_box register-Input" placeholder="Password" pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}' title="Must contain at least one uppercase and  lowercase letter, and at least 5 or more characters" required>
 
 
 
 
-                <input type="password" id="cpassword" name="cpassword" class="password_box signup-Input" placeholder="Confirm Password" pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}' title="Must contain at least one uppercase and  lowercase letter, and at least 5 or more characters" required>
+                <input type="password" id="cpassword" name="cpassword" class="password_box register-Input" placeholder="Confirm Password" pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}' title="Must contain at least one uppercase and  lowercase letter, and at least 5 or more characters" required>
 
 
                 <button id="submitBtn" class="signIn__button" name="sign_up" type="submit">Sign Up</button>

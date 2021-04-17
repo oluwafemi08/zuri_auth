@@ -1,42 +1,68 @@
-<?php
-if (isset($_POST['sign_up'])) {
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-    session_start();
-    $url = 'userdata.json'; // path to JSON file
-    $data = file_get_contents($url); // put the contents of the file into a variable
-    $details = json_decode($data, true); // decode the JSON feed
+<?php include_once('lib/header.php');
 
-    $user_found = FALSE;
-    foreach ($details as $detail) {
-        /* Check Username and Password existence in defined array */
-        if ($detail["username"] == $email) {
-            $user_found = true;
-            break;
-        } else {
-            $user_found = false;
+?>
+
+<p><strong>Welcome Please Register</strong></p>
+<p>All fields are required</p>
+
+<form action="registerProcess.php" method="POST">
+    <p>
+        <?php
+
+        if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+            echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";
+            // session_unset();
+            session_destroy();
         }
-    }
-    if (!$user_found) {
-        $newdata = array();
-        $arr = array(
-            "username" => $email,
-            "password" => $password
-        );
-        array_push($details, $arr);
-        $new_data = json_encode($details);
-        file_put_contents($url, $new_data);
-        $_SESSION['msg'] = "<script type='text/javascript'>
-    toastr.success('Account was successfully added')
-</script>";
-    } else {
-        $_SESSION['msg'] = "<script type='text/javascript'>
-    toastr.error('Failed to add account, $email already exist')
-</script>";
-    }
-    SESSION_START();
-    $_SESSION['name'] = $email;
-    //redirect to the dashboard page using php built-in header method
-    header("Location: index.php");
-    //replace the index.html with the dashboard URL
-}
+
+        ?>
+    </p>
+
+    <p>
+        <label>First Name</label><br />
+        <input <?php
+                if (isset($_SESSION['first_name'])) {
+                    echo "value=" . $_SESSION['first_name'];
+                }
+                ?> type="text" name="first_name" id="" placeholder="">
+    </p>
+
+    <p>
+        <label>Last Name</label><br />
+        <input <?php
+                if (isset($_SESSION['last_name'])) {
+                    echo "value=" . $_SESSION['last_name'];
+                }
+                ?> type="text" name="last_name" id="" placeholder="">
+    </p>
+
+    <p>
+        <label>Email</label><br />
+        <input <?php
+                if (isset($_SESSION['email'])) {
+                    echo "value=" . $_SESSION['email'];
+                }
+                ?> type="text" name="email" id="" placeholder="email@domain.com">
+    </p>
+
+    <p>
+        <label>Password</label><br />
+        <input type="password" name="password" id="" placeholder="password">
+    </p>
+
+    <p>
+        <label>dob</label><br />
+        <input <?php
+                if (isset($_SESSION['dob'])) {
+                    echo "value=" . $_SESSION['dob'];
+                }
+                ?> type="date" name="dob" id="" placeholder="mm/dd/yyyy">
+    </p>
+
+    <p>
+        <button type="submit">Register</button>
+    </p>
+</form>
+
+
+<?php include_once('lib/footer.php'); ?>
