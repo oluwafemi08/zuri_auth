@@ -51,7 +51,7 @@ if ($errorCount > 0) {
     // query if email/user exists;
 
     for ($counter = 0; $counter < $countAllUser; $counter++) {
-        $currentUser = $allUser[$counter];
+        $currentUser = $allUsers[$counter];
 
         if ($currentUser == $email . ".json") {
             $_SESSION["error"] = "Registration Failed, User already exists";

@@ -1,5 +1,8 @@
 <?php include_once('lib/header.php');
 
+if (isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])) {
+    header("Loacation: dashboard.php");
+}
 ?>
 
 <p><strong>Welcome Please Register</strong></p>
